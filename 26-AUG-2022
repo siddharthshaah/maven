@@ -1,0 +1,226 @@
+Maven
+There are 6 features are there in maven
+1. Standardized directory structure
+2. Dependency Management
+3. Plugins
+4. Build Abstraction
+5. Tools Support
+6. Archetypes
+
+1. Standardized directory structure
+The directory we should use in creating the projects is standardized by the maven and should be same for all the projects so that maven knows what build activities has to be applied for building the project and it even knows where are the directory location of the files in the project so it eliminates writing the build script for building the project, maven needs only information about the project to build 
+advantages:-
+	1.1 the developer can easily switch across the projects in working, he dont find complex in understanding the directories of the project to work
+	developer can jumpstart on working with any project
+	1.2 the developer can use any of the ides of his choice in working with the project since all the ides supports maven project directory structure
+	
+How to build a java project in maven?
+To build the project with maven we need to create the project based on maven directory structure
+
+project (directory)
+|-src
+	|-main
+		|-java (compiled)
+		|-resources (included in the packaging)
+	|-test
+		|-java
+		|-resources
+|-pom.xml
+
+		
+In the maven project we have 2 different source directories, src/main and src/test. within the src/main directory we need to place the source code of the project we wanted to build/package and deliver to the customer.
+All the unit testing code that should executed during the time of development/qa phase of the application should be placed in src/test directory
+There are 2 reasons why we need to separate these source code into 2 directories
+
+1. The test source code should be separated from source code of the project, so that we can ignore packaging them into the jar/war for delivery
+2. when we ask the maven to compile and package the project, maven can automatically run the testcode, if the testcode went through then the maven packages the project
+
+
+In our application we generally has to types of source code
+1. java code            = all the .java files that should be compiled to be executed are called java source code
+2. non-java source code = all the .properties, .xml or any other configuration files that are required for running the project are called non-java source code. these files should be packaged into jar/war of our application
+
+In Ant like tools we need to manually copy them into classes directory or include them into jar/war manually. but in maven we can place all the non-java source code into resources/ directory so that maven guarantee them to be included into war/jar while packaging
+
+In addition to the above under the root directory of the project we need to create pom.xml. In this file we need to define/declare the information about the project.
+pom stands for project object model, object model means structured/pre-defined data, since this file contains project structured/predefined data it is called pom file
+
+within the pom.xml there are 4 elements we need to define mandatorily
+1. modelVersion
+2. groupId
+3. artifactId
+4. version
+
+groupId, artifactId and version together are called "gav" coordinates of the project
+1. modelVersion= represents the version of the pom file we are using in writing the pom.xml
+2. groupId=organization name for whom we are building the project, usually written as the domain name of the company
+3. artifactId=name of project
+4. version=version of the project
+
+pom.xml
+--------
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ibm</groupId>
+	<artifactId>codeanalyzer</artifactId>
+	<version>1.0</version>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

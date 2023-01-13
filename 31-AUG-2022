@@ -1,0 +1,90 @@
+How to identify the dependency from the maven central repository?
+There are lot of artifacts published by various different opensource contributors or third-party organizations for distributing their artifacts. there is a chance of collision in the name of the artifacts being published by these people, to uniquely identify and locate these artifacts maven has introduced dependency identification technic using GAV coordinates
+
+GroupId = organization who publishes/produces the artifact or owner of the artifact
+ArtifactId = the project or the jar/artifact name being published
+version = version of the artifact
+
+our project we build/develop can act as an dependency for other projects, to make it identifiable maven mandates every project to have gav coordinates, so in our pom.xml for our project as well we define gav coordinates
+------------------------------------------------------------------------------------------------------------------------
+declarative dependency management
+
+For a given project what dependencies are required for compiling and deploying/executing a project are well known during the development time itself. The developer instead of manually downloading the dependencies for a project, he/she can declare the dependencies required for compiling/packaging the project by declaring them in pom.xml of the project
+
+pom.xml
+--------
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>random.org</groupId>
+	<artifactId>machine</artifactId>
+	<version>1.0</version>
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.30</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+	</dependencies>
+</project>
+
+There are 2 advantages in declarative dependency management.
+	1. the developer dont need to download the dependencies required for compiling/packaging the project, maven at the time of building the project determines which dependencies are requried by looking into pom.xml of your project and downloads them automatically
+	These dependencies are added to the classpath while compiling and packaged into war aswell
+	2. by declaring the dependencies, we can easily identify which dependencies of what versions are needed for building the project
+------------------------------------------------------------------------------------------------------------------------
+
+Repositories in-depth
+---------------------
+Repositories are introduced to store and distribute various different artifacts like jar, plugins and projects to the world. The artifacts are identified in the repository through GAV coordinates
+To help in serving various different purposes maven supports 3 types of repositories
+1. central repository
+2. remote repository
+3. local maven repository
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

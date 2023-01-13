@@ -1,0 +1,190 @@
+Build lifecycle
+----------------
+Build lifecycle is the way through which maven has achieved build abstraction. across all the java projects the stages/phases in which we carry out the build process would be same for eg.. 
+	1. clean
+	2. create directories
+	3. compile
+	4. copy resources
+	5. package
+	6. deploy
+	
+these are the typical stages in which we conduct the build for a project. At each stage we need to perform build steps/activities to fulfill the stage of execution
+
+For eg.. tools like ANT we can map the stages/phases to targets and we associate tasks to targets to perform the operations at that target.
+	
+There are few difficulties in this approach
+1. we need to endup in repeatedly writing the build script with same stages/phases by associate the same tasks which is duplicate effort
+2. the user who wants to build project has to gothrough the build script to determine what targets/phases are there and how are those executed to understand which target he has to run to accomplish the output. thus making it complex to build an application.
+	
+So to eliminate the above difficulties the maven has standardized the phases in which build activities are carried for the project into lifecycles. There are 3 standard lifecycles are there applicable for any project
+1. default = default lifecycle has phases to build an application
+2. clean   = clean phases of a project
+3. site    = documentation for the project
+
+every phase within the lifecycle is associated with bunch plugin goals, that takes care of performing the activities at that phase
+maven has prebuilt bunch of plugins with goals to carry out the common activities in build any java project and has associated by default to appropriate phases of the above lifecycles
+
+500
+
+Phases in lifecycles:
+default lifecycle:
+1. validate
+2. compile
+3. test
+4. package
+5. integration-test
+6. verify
+7. install
+8. deploy
+
+clean lifecycle:
+1. clean
+
+site lifecycle:
+1. site
+
+To run a build for a project the developer has to tell the maven to build the project upto which phase of a lifecycle by using lifecycle:phase (here lifecycle name is optional)
+for eg.. mvn clean package
+here we told execute clean phase of clean lifecycle and package phase in default lifecycle. maven automatically takes care of perform all the phases from the top till the lifecycle we specified by execute all the plugin goals associated with each phase of the lifecycle
+
+mvn clean install -Dmaven.test.skip=true
+With the preconstructed phases associated with goals of the plugins the build process for any java project would be same. so developer/deployer dont need to understand the complex build scripts to determine which target to be executed to build an application. For any project the way we carry the build would be same which is build abstraction
+
+How about adding/perform new activities at a phase of the build?
+For eg.. we wanted to send an email to the developers/stakeholders of the project whenever the build of a project has been finished
+Here sending an email is an additional activity and we wanted to perform this activity during the package phase.
+
+There are lot of plugins distributed by both maven developers/communities around the world. we can use any of the plugins available to perform additional build activities by associating the plugin to the appropriate phase of the lifecycle.
+In addition we can also write our own plugin and can associate to the phases of the lifecycle.	
+
+
+How to associate a plugin to the phase of the lifeycle?
+the default plugin/goals are pre-associated to the lifecycle phases in maven, if we want to perform more activities then we need to associate the goal of a plugin to an appropriate phase of the lifecycle
+
+There are 2 types of plugins are there
+1. build plugin     = build plugins carries build activities of a project
+2. reporting plugin = are used for generating reports like site, sonarcube etc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

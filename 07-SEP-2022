@@ -1,0 +1,109 @@
+Archetypes
+archetypes are used for quickly creating the maven projects. archetypes are pre-built project templates compressed and distributed through maven repositories.
+For each type of project representing the directory layout maven has provided 5 archetypes
+1. maven-archetype-quickstart
+2. maven-archetype-webapp
+3. maven-archetype-j2ee-simple
+4. maven-archetype-mojo
+5. maven-archetye-archetype
+
+maven has provided an plugin called archetype by using we can create quickly an project from the archetypes
+
+mvn archetype:generate -DgroupId=projectGroupId -DartifactId=projectArtifactId -Dversion=projectVersion -DarchetypeGroupId=archetypeGroupId -DarchetypeArtifactId=archetypeArtifactId -DarchetypeVersion=archetypeVersion
+
+The above archetype plugin generates an project based on the gav coordinate of the archetype we supplied, so we dont need to create the project manually.
+-----------------------------------------------------------------------------------------------------------------------
+custom archetypes
+across the projects of similar technologies, people has to create the projects from maven archetypes and add project specific dependencies, plugins and configurations required for developing the project. it takes lot of time for setting up the project by adding project specific configurations/settings. instead of this we can create our own custom archetypes with required configurations and can be reused in creating the projects using them quickly
+
+
+There are 2 ways we can create our own custom archetypes
+1. from scratch by using maven-archetype-archetype archetype
+2. from an existing project we can create an archetype
+
+
+#1.
+maven has provided pre-defined archtypes, one such archetype is maven-archetype-archetype. using the maven-archetype-archetype create an project and add required configuration files, dependencies and plugins that are required for your project and export it as an archetype
+
+#2. 
+create an maven project depends on the technology by choosing an appropriate archetypes. then write all the basic dependencies, plugins and configurations necessary for your project.
+once the basic project has been setup, now create an archetype from the existing project
+
+#2. How to create an archetype from an existing project
+2.1 create a project by choosing an archetype appropriate to the type of the project we wanted t build
+2.2 add necessary dependencies, plugins and configurations into the project
+2.3 goto the project root directory and run the below archetype plugin
+mvn archetype:create-from-project
+		
+
+
+------------------------------------------------------------------------------------------------------------------------
+Plugins
+A build process involves several steps/activities like compilation, packaging and copying resources etc. Maven uses the concept of plugins/goals to represent such granular activities in the build process
+
+A plugin can be seen as a component which contains multiple goals. each goal represents an activity or an operation to be carried as part of the build process
+For eg.. 
+Maven archetype plugin has 2 goals
+1. generate = generate creates an new project from existing archetype
+2. create-from-project = creates an new archetype project from an existing project
+
+another example of a plugin
+mvn install:install 
+install is a plugin and it has install goal
+
+We can run a goal of a plugin using
+mvn pluginName:goal directly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

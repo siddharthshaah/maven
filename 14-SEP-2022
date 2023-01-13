@@ -1,0 +1,232 @@
+maven multi-module project
+---------------------------
+In an enterprise application a project comprises of multi-modules, consider a food delivery platform swiggy there are different actors using the system like
+1. customers 
+2. restaurants
+3. delivery associates
+4. administration team
+
+it is not recommended to build the entire application into one single module since there are different actors using the system and we run into lot of problems as below.
+	1. all the actors may not need to have the access to all the features of the platform for eg.. an customer should not see the features of a restaurant, similarly an restaurant should not have access to the features of administration team. this can be achieved by separating the systems into multiple modules
+	we need to breakdown the system into individual modules as
+	1. swiggy-customer
+	2. swiggy-restaurant
+	3. swiggy-deliveryexecutive
+	4. swiggy-administration
+	
+	2. the scope of accessibility of these modules differ from actor who is accessing. for eg.. administrators of the platform should be able to access the swiggy-administration module only within the corporate network of the office. if we build all the features into one single module, we cannot restrict the access towards these features
+	
+	3. different modules has different features and release priorities cannot be managed easily
+	4. an impact of one module brings down the others
+	
+so, it is recommended to build the application by breaking down into modules. across all these modules the service/persistence-tier of the system would be same. so to reuse them we need to build these components into a separate module swiggy-service
+
+Now the swiggy-service can be added an dependent across all of the web modules of our application. to keep it simple let us consider
+
+swiggy-customer [web]
+|-pom.xml
+	groupId=swiggy.com
+	artifactId=swiggy-customer
+	version=1.0
+	- dependencies
+		- dependency
+			-groupId=swiggy.com
+			 artifactId=swiggy-service
+			 version=1.0
+		
+swiggy-restaurant [web]
+|-pom.xml
+	groupId=swiggy.com
+	artifactId=swiggy-restaurant
+	version=1.0
+	- dependencies
+		- dependency
+			-groupId=swiggy.com
+			 artifactId=swiggy-service
+			 version=1.0
+		
+swiggy-service [java] 
+|-pom.xml
+	groupId=swiggy.com
+	artifactId=swiggy-service
+	version=1.0
+
+If we are developing these 3 projects as individual projects there are few challenges in managing them
+1. we need to always memorize or know the build order dependency between the modules. we need always build service module so that restuarant/customer can pickup the latest of the service module
+2. each time to deploy/test/delivery the application we need to manually build individually the projects takes lot of time
+3. since all these projects are build on same technology the pom configurations related to dependencies/plugin configurations would be duplicated across these projects, due to which maintainability of the applications becomes difficult
+
+To overcome the above problems in managing the mutliple modules of a project, the maven has introduced multi-module maven project
+
+For all the projects the dependencies/plugin configurations are same, so to inherit them and enforce build order of these modules we need to create an parent project 
+
+swiggy-parent [mvn clean verify]
+|-pom.xml
+  |-groupId=swiggy.com
+	  artifactId=swiggy-parent
+		version=1.0.0
+		packaging=pom
+		-------------------------
+		modules (build order) = module declaration enforces the build order of the projects
+		- swiggy-service
+		- swiggy-customer
+		- swiggy-restaurant
+		--------------------------
+		dependencyManagement
+		- dependencies
+			-dependency
+				groupId=org.springframework
+				artifactId=spring-core
+				version=5.1
+			-dependency
+				groupId=org.springframework
+				artifactId=spring-webmvc
+				version=5.1
+			-dependency
+				groupId=org.springframework
+				artifactId=spring-jdbc
+				version=5.1
+	 pluginManagement	
+	 - plugins
+	 	- plugin
+			groupId=org.apache.maven.plugins
+			artifactId=maven-compiler-plugin
+			version=3.2
+			configuration:
+				source=11
+				target=11
+	|-swiggy-service
+		|-pom.xml
+			|-parent
+				groupId=swiggy.com
+				artifactId=swiggy-parent
+				version=1.0.0
+			|-artifactId=swiggy-service
+			|-packaging=jar
+			dependencies
+			|-dependency
+				groupId=org.springframework
+				artifactId=spring-core
+			|-dependency
+				groupId=org.springframework
+				artifactId=spring-jdbc
+	|-swiggy-customer
+		|-pom.xml
+			|-parent
+				groupId=swiggy.com
+				artifactId=swiggy-parent
+				version=1.0.0
+			|-artifactId=swiggy-customer
+			|-packaging=war
+			dependencies
+			|-dependency
+				groupId=org.springframework
+				artifactId=spring-core
+			|-dependency
+				groupId=org.springframework
+				artifactId=spring-mvc			
+	|-swiggy-restaurant
+		|-pom.xml
+			|-parent
+				groupId=swiggy.com
+				artifactId=swiggy-parent
+				version=1.0.0
+			|-artifactId=swiggy-restaurant
+			|-packaging=war
+			dependencies
+			|-dependency
+				groupId=org.springframework
+				artifactId=spring-core
+			|-dependency
+				groupId=org.springframework
+				artifactId=spring-mvc						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

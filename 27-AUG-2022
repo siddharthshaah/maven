@@ -1,0 +1,135 @@
+pom stands for project object model its an configurable or project information file in which we need to declare the information about the project, it is not an build script file. The maven reads the information declared inside the file and perform the build activities for the project
+
+There are 4 elements we need to declare mandatorily within the pom.xml
+1. modelVersion = pom version [4.0.0]
+2. groupId      = organization for whom we are building the project
+3. artifactId   = project name
+4. version      = project version
+------------------------------------------------------------------------------------------------------------------------
+Dependency Management
+In a java project we typically use the external libraries that are shipped by the vendors or opensource communities, so that we can quickly develop the project by reusing the external libraries. without the external libraries added to your classpath of your application we cannot compile or execute the project, so these libraries are called dependencies.
+How to manage these dependencies of a project is nothing but maven dependency management.
+	
+How to manage the dependencies required for running a java application?
+The developer or the ops engineer has to manually download the dependencies and add to the buildpath/classpath of the application to compile and package/execute the application. There are lot of challenges are there in this approach
+
+1. The developer by himself has to search through the libraries and identify and download them from the internet. but there is no guarantee that the developer would land into the right library he is looking for using and there is no one go guarantee the authenticity of the library
+
+2. Its not one developer in the team, rather all the developers requires these external libraries in building and running the project, so everyone has to go through the process of searching and downloading the third-party libraries from the internet which consumes huge amount of bandwith and time in downloading and using the libraries
+
+3. For a project we need bunch of dependencies, there is no place where which dependencies are required for compiling and running the project been defined. So the developers of the project has to go in iterations in compiling the project identifying the ClassNotFound issues and searching and locating the relevant libraries which is a time consuming process and might landup into version mis-match issues as well in using the libraries
+
+4. There is no control over which version of the library to be used since each developer is allowed to download the libraries by their own and use it. so the developers might landup in downloading and using different versions of these libraries which will eventually breaks the code compatibility with different versions
+
+5. If everyone is allowed to download and use the libraries there is chance where we run into legal and licensing issues in using these libraries
+
+To overcome the above problems and quickly distribute the libraries across the developers or stages of delivery of the project we can push the libraries into source code management repositories which might solve the above problems to an certain extent
+But it has its own problems
+1. the scm repository servers will be filled with huge amount of storage in repeatedly storing the same libraries across the projects
+2. the download and build time required for building the projects will shootup which will eventually contributes to the delay in development or delivery of the application
+
+To overcome the above problems, maven has introduced dependency management 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

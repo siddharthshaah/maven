@@ -1,0 +1,302 @@
+Build lifecycle
+Build lifecycle abstracts the process building an application while working with maven, for every java project the stages in which we build the application would be same, which has been standardized by the maven through the concept of build lifecycle
+
+There are 3 build lifecycles are the defined by maven with fixed phases associated with goals of the plugins
+1. default
+	1.1 validate
+	1.2 compile
+	1.3 test
+	1.4 package
+	1.5 integration-test
+	1.6 verify
+	1.7 install
+	1.8 deploy		
+2. clean
+	2.1 clean
+3. site
+	3.2 site
+	
+we may wanted to perform additional activities within any of the phases of the build lifecycle, it can be done by associating the plugin goals to any of the phases of the lifecycle. We can associate a plugin goal to the phase of the lifecycle by writing the configuration in pom.xml
+
+There are 2 types of plugins are there
+1. build plugins = build plugins are executed during the default lifecycle phases of the maven build and participates in performing an activity during the maven build process
+2. reporting plugins = reporting plugins are executed during the site lifecycle phase of the maven build.
+
+we can associate a plugin to a phase of a lifecycle as below.
+	
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>g1</groupId>
+	<artifactId>a1</artifactId>
+	<version>1.0</version>
+	<dependencies>
+		....
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>pluginGroup</groupId>
+				<artifactId>pluginArtifact</artifactId>
+				<version>pluginVersion</version>
+				<executions>
+					<execution>
+						<id>ex1</id>
+						<phase>compile</phase>
+						<configuration>
+							<arg>value</arg>
+							<arg>value</arg>
+						</configuration>
+						<goals>
+							<goal>goal1</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>pluginGroup</groupId>
+				<artifactId>pluginArtifact</artifactId>
+				<version>pluginVersion</version>
+				<configuration>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+</project>
+
+------------------------------------------------------------------------------------------------------------------------
+How can we add additional activity during the phase of the maven build?
+We need to manually add the plugin configuration in pom.xml. There are lot of openSource community plugins are available which we can choose based on requirement and add it to the build/pom.xml of our project
+
+or else
+we can create our own plugin and can associate with the maven build lifecycle phases of our project
+
+How to develop our own plugin and associate to the maven build lifecycle?
+maven has provided plugin api for building our own plugin. we need to write our own plugin component implementing from maven provided interface/extend from abstract class provided
+	
+#1. create an maven plugin project
+mvn archetype:generate -DgroupId=pluginProjectGroupId -DartifactId=pluginProjectArtifactId -Dversion=pluginVersion -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-mojo -DarchetypeVersion=1.0
+	groupId=techteam.com
+	artifactId=debug-plugin
+	version=1.0
+	
+#2. we need to upgrade the dependencies in pom to the latest version
+
+#3. write a plugin class
+	
+
+@Mojo(name="debug")	
+class DebugPlugin extends AbstractMojo {
+	@Parameter(property="msg", required=true, defaultValue="none")
+	private String msg;
+	
+	public void execute() {
+		super.getLog().info("DebugPlugin: " + msg);
+	}
+}	
+	
+#4. install the plugin into local maven repository
+mvn clean install
+---------------------------------------------------------------------------------------------------------------------
+
+#2 to use the above plugin into our project create another maven project
+2.1
+mvn archetype:generate -DgroupId=projectGroupId -DartifactId=projectArtifactId -Dversion=version -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.0
+	groupId=techteam.com
+	artifactId=debug-plugin
+	version=1.0
+	
+#2.2
+add the above plugin configuration to the pom.xml
+<project>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>techteams.com</groupId>
+				<artifactId>debug-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<msg>Hey executing the debugplugin as part of maven build</msg>
+						</configuration>
+						<goals>
+							<goal>debug</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

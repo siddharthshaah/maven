@@ -1,0 +1,97 @@
+Maven Build Abstraction / Maven Build Lifecycle
+build lifecycle
+---------------
+There are 3 built-in build lifecycles are there in maven
+1. default = handles project build/deployment activities
+2. clean = cleaning the generated directories
+3. site = generating project documentation
+
+Each lifecycle contains several build phase we can treat these phases as ant Targets or stages of a build process
+#1. Phases in default lifecycle
+1. validate = validates the project is correct and all information provided is valid or not
+2. compile  = compiles the source code
+3. test     = test the source code with available unit testcases 
+4. package  = packages into a distributable format (jar, war, ear)
+5. integration-test = runs the integration testcases
+6. verify   = run any checks to verify whether the package is meeting the quality criteria or not
+7. install  = install the package into local maven repository
+8. deploy   = copies the final package into remove maven repository so that it can be shared to other develpers/teams
+
+For the above phases there are plugins with goals associated to carry the relevant operation at each phase
+build an maven project
+
+validate
+|-plugin1#goal
+|-plugin2#goal
+---------------
+compile
+|-compilePlugin#compile
+|-copyResources#copy
+-------------------------
+test
+|-surefireplugin#test
+-----------------------
+
+mvn default:package
+
+
+#2. Phases in clean lifecycle
+1. clean
+  |-CleanPlugin#clean
+
+#3. phases in site lifecycle
+1. site
+
+mvn clean:clean default:verify
+mvn clean verify
+
+
+project1 = mvn clean verify
+project2 = mvn clean verify
+project3 = mvn clean verify
+project4 = mvn clean deploy
+
+
+#3 build lifecycles are there in maven
+an maven lifecycle defines the standard phases in which a build activities should be applied for a project
+1. default
+2. clean
+3. site
+
+each lifecycle has defined pre-defined phases, which are common across all the projects of maven. each phase represents a stage in build process.
+every phase has been associated with a plugin/goal to carry activities at that phase.
+maven has pre-built plugins with goals and has associated with build lifecycle phases to perform build activities for every maven project 
+
+so developer dont need to know how to build an maven project, what phases are there and how to run the build since across all the projects the phases are same.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

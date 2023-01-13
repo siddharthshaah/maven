@@ -1,0 +1,122 @@
+dependency management
+1. dependency identification technic
+2. declarative dependencies management
+3. repositories in depth
+
+#3. repositories in depth
+There are 3 types of repositories are there in maven
+1. local repository
+2. central repository
+3. remote repository
+
+1. local repository 
+upon running the maven build for the first-time on a machine using maven CLI, it creates an local maven repository under the default location $USER_HOME/.m2 directory. The local maven repository is just a organized directory layout in which the artifacts are managed and used.
+There are several advantages of local repository being setup by maven
+1. we can reuse the artifacts across the projects and can reduce the storage footprint of the local diskspace of the computer.
+2. can avoid repeated downloads of the same artifact for each build which reduces the network bandwidth consumption and time taken for buiding the application as well
+
+2. central repository
+its the central repository where the artifacts are published by various different opensource contributors and vendors, stored and distributed to the world. it acts as an marketplace of lookup for the dependencies required for building the applications
+
+3. Remote repository
+Remote repositories are introduced to solve the typical problems we encounter while using the maven in an organization
+problems with central maven repository in organization:
+1. huge amount of bandwidth consumption will be incurred, when several members of the organization are running the maven builds, since it downloads the artifact atlease once per each member.
+2. due to huge consumption network bandwidth, there is a high chance of network latency or slow-ness in downloading the dependencies, so that the build time increases for a project
+3. no control over the developers on using the libraries from central maven repository due to which different developers might endup in still using different versions of the libraries or may run into licensing issues
+4. due to network security the organizations may not allow the machines to connect directly to the internet/public networks due to which using maven becomes in-feasible
+-----------------------------------------------------------------------------------------------------------------------
+Customizing the Maven Install
+during the first build of the project on a machine maven by default creates an local maven repository at location $USER_HOME/.m2 directory
+
+If we wanted to change the default directory location of the local maven repository we need to create settings.xml under $USER_HOME/.m2/settings.xml in which we can write the configuration to customize the default behaviour of the maven
+
+<settings>
+	<localRepository>d:/.m2/repository</localRepository>
+	<interactiveMode/>
+	<usePluginRegistry/>
+	<offline/>
+	<pluginGroups/>
+	<servers/>
+	<mirrors/>
+	<proxies/>
+	<profiles/>
+	<activeProfiles/>
+</settings>
+------------------------------------------------------------------------------------------------------------------------
+Transitive dependency management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

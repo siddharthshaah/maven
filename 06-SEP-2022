@@ -1,0 +1,59 @@
+Maven Archetypes
+-----------------
+How to create an maven project?
+We have to follow standardized directory structure of maven to build the project using maven, the directory structure of the projects will differ based on the type of the project
+The developer has to memorize the directory structure of each type of project and should manually create these directories along with pom to build the project with maven, which seems to be difficult and time consuming job in creating the project with maven.
+
+to help us in quickly creating the projects with maven, it has provided archetypes
+archetypes: archetypes are pre-built project templates that are compressed/packaged and distributed through maven repositories by the maven team. These archetypes contains standard directories and configuration files which can be used to directly creating the project.
+	
+For each type of project maven has created an archetype with relevant directory structures/configurations and distributed through maven repositories. each of these archetypes has their own gav coordinates using which we can identify them.
+	
+There are 5 built-in archetypes are there shipped by the maven team through maven repository
+1. maven-archetype-quickstart    = building core java application
+2. maven-archetype-j2ee-simple   = simple jee application (ear)
+3. maven-archetype-webapp        = web application project
+4. maven-archetype-mojo          = maven plugin project
+5. maven-archetype-archetype     = An archetype project using which we can create our own archetype
+
+The developers dont have to download the archetypes, extract and setup the project manually rather maven has provided an tool/plugin called maven archetype plugin
+
+archetype gav coordinates:
+groupId=org.apache.maven.archetypes
+artifactId=maven-archetype-quickstart
+version=1.4
+	
+our project gav coordinates:
+groupId=org.jtools
+artifactId=inventorymgmt
+version=1.0.0-SNAPSHOT
+
+mvn archetype:generate -DgroupId=org.jtools -DartifactId=inventorymgmt -Dversion=1.0 -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

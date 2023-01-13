@@ -1,0 +1,108 @@
+maven
+------
+maven is an another build tool provided for building java applications as an alternate to the ANT tool to eliminate the problems in building the applications using ANT.
+
+While working with building the java applications using ANT, the build activities we wanted to apply across all the java projects irrespective of the project we are working is same. even then also the programmer has to endup in repeatedly writing the build script describe the same activities to be applied across all the projects which is an duplicate effort of re-doing the same.
+
+java project1 (or) java project2
+What activities has to be applied for building an java project1?
+1. clean the directories
+	#delete classes,dist and build directories
+2. create the directories
+	#mkdir build, classes and dist directories
+3. build the classpath pointing to all the dependencies (jar files) of the project
+4. compile the source code of the project and copy non-java resources into the classes directory
+	# compile all the java classes under source directory of the project by adding the classpath
+	# copy non-java files of the source directory into the classes directory
+5. package the project
+	# depends on the type of the project package into jar/war package
+6. run the project
+	# depends on the type of the project
+		- deploy on the server env
+		- run the Main program of the java application
+		
+From the above problem, the thought process of how to eliminate repeatedly writing the build script for each project since all the projects will have the same set of activities to be applied that is where maven has been brought into picture
+
+The goal of the maven is to identify the difficulties or challenges involved in building the applications using ANT and eliminate them, so maven has been designed with 6 crucial features
+1. Standardized directory structure
+2. Dependency Management
+3. Plug-ins
+4. Build Abstraction
+5. Tools Support
+6. Archetypes
+
+#1. Standardized directory structure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

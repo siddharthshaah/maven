@@ -1,0 +1,133 @@
+dependency scopes
+Not all the dependencies are required during all the phases of build, few dependencies are required during compile-time, few to be included during packaging and others during unit testcase execution. so it the developers responsibility while declaring the dependencies in the pom.xml to specify the scope of these dependencies to the maven, which is called "dependency scope"
+
+There are 6 scopes
+1. compile (default scope) = if we dont declare any scope for a dependency while declaring in pom.xml, the default scope is compile. the compile scope means, the dependency should be included during all the phases of the build process.
+	
+2. provided = these dependencies are already provided as part of the runtime environment/containers into which we are going to run the application, so these has to be excluded during runtime/packaging. but should be included in rest of the phases of build
+
+3. runtime = these dependencies should not be included during compilation but should be included during runtime/packaging the application (for eg.. implementation jars for an api)
+	
+4. test = these dependencies should be included in classpath while compiling and running the testcase code only
+
+5. system = to refer a dependency from the hardcoded path of the system rather than from repo
+
+6. import = used for importing the dependencies of another pom.xml into our pom file
+-----------------------------------------------------------------------------------------------------------------------
+How to manually add the dependency into the local repository?
+there is a locally produced dependencies within the developer machine or can be a dependency which is not available as part of the central repository. but we wanted the dependency to be included in our project, unless the dependencies are declared in pom.xml maven cannot include in build path or packaging.
+	
+so we need to install the dependency in local maven repository so that it can be referred in pom.xml for using that in maven build to do this maven has provided an plugin called mvn install:install
+
+mvn install:install -DgroupId=<groupId> -DartifactId=<artifactId> -Dversion=<version> -Dfile=<filepath> -Dpackaging=<jar,war,ear> -DgeneratePom=<true/false>
+------------------------------------------------------------------------------------------------------------------------
+maven versioning
+maven projects uses an standard version convention which is
+majorVersion.minorVersion.incrementalVersion-qualifier
+
+
+#100 = requirements
+#20 prioritize the requirements = to build an minimum value product = 1.0.0 [major release]
+	                                              major/critical bugs = 1.1.0 [includes major/critical bug fixes] [mandatory to upgrade for the customers to stabilize the system]
+                         minor bugs which may not impact the system = 1.1.1
+
+qualifier = denotes the stage of the artifact being produced
+SNAPSHOT = development dependency
+RC = RELEASE CADIDATE
+ALPHA, BETA = testing phase dependencies
+------------------------------------------------------------------------------------------------------------------------
+dependency management
+ - declarative dependency management
+ - dependency identification technic
+ - types of repositories
+ - transitive dependency management, dependency mediation technic
+ - dependency scopes
+ - maven versioning
+ - maven install plugin
+ - maven settings/customizing the maven installation
+------------------------------------------------------------------------------------------------------------------------
+Standardized directory structure of maven projects
+while working with maven, we need to follow standardized directory structure in creating the maven projects. not all the projects has the same directory layout rather depends on the type of the project we are working the directory layout will differ. here is the list of directories that are allowed for an maven project
+
+1. src/main/java
+2. src/main/resources
+3. src/test/java
+4. src/test/resources
+5. target = holds the generated artifacts out of the build
+6. src/main/config = holds the configuration files (not included in the artifact)
+7. src/main/scripts = holds the administrative scripts required for administrators or developers
+8. src/main/webapp = holds the .jsp or web assets in this directory
+9. src/it = integration tests
+10. src/main/db = database schema/scripts
+11. src/site = site generation document
+
+ 
+ 
+dependency:tree
+-> the transitive dependencies added to the project we can identify through dependency:tree. here identify the transitive dependency is included through which parent dependency
+
+spring-core-5.2.3.jar
+ |-commons-bean-utils-1.0.jar
+ 
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-core</artifactId>
+	<version>5.2.3</version>
+	<exclusions>
+		<exclusion>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-beans-utils</artifactId>
+			<version>1.0</version>
+		</exclusion>
+	</exclusions>
+</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

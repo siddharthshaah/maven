@@ -1,0 +1,241 @@
+Maven
+-----
+There are 6 features are there in Maven
+1. Standardized directory structure
+2. Dependency Management
+3. Plug-ins
+4. Build Abstraction
+5. Tools Support
+6. Archetypes
+
+#1. Standardized directory structure
+In ANT we write build script with 2 details inside it
+1. The build steps/activities to be applied for the project
+2. The directories on whom these activities has to be applied
+
+For most of the java projects the build activities we need to apply in building the project is same, even then also we endup on writing build script because the directory structure of one project to another is different, so we need to pass the directories as inputs to the ANT tasks asking to perform operation
+
+Due to this we endup in repeatedly writing the build.xml for each project descripting the directories information of the projects 
+
+So, to eliminate duplicating the build script with repeated build activities just for the sake of different directory structure of projects, maven has introduced standardized directory structure
+
+For each java project the directory structure we should follow in creating the project should be same and is standardized by the Maven itself, so that we dont need to tell to maven
+1. what build activities to be perform for building my project
+2. what directories on whom these activities to be applied, since the directories are standardized and well-known
+
+this eliminates completely writing the build script for building the project, now programmer dont have to write build script describing activities and directories for each project.
+While working with maven we just only need to provide information about the project to maven, maven already known how to build a java project so maven is called "declarative build management tool"
+	
+By following standardized directory structure for a project we have lot of benefits
+1. if the directory structures across the projects are different the programmer has to spend lot of time in understanding the directory structure of the project while switching between one project to the another and he find it lot more complex to work since he has to memorize the structure of the various different projects.
+By having standardized directory structure the developer can switch across any projects and in no-time he can start working on the projects quickly since all the projects has the same structure
+	
+	
+2. Each IDE has different directory structures in creating the projects. if we have created the project with one of the IDE we cannot switch to an different IDE since the structure of the project with others is completely different
+But with maven standardized directory structure the project structure would be same for all the projects and every java ide supports maven standardized directory structure
+eclipse
+intellij
+jdeveloper
+sts
+vscode
+
+by which our project becomes agnostic to the IDE in which we are working, which means we can work on using any IDE for developing our project
+
+
+How to install maven on the machine?
+Maven is a build tool that has been purely written in java language and requires java to be installed on the machine prior to using maven.
+The latest version of maven: apache-maven-3.8.6 and requires an JDK version: 1.7+ minimum
+	
+Windows operating system:
+In windows maven is an binary distribution we can download the .zip file of the maven extract and add to the system PATH for using the maven
+1. download https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip from maven official site
+2. extract the apache-maven-3.8.6-bin.zip download, it will be extracted into apache-maven-3.8.6
+3. copy the extracted directory into c:\ directly
+	
+4. goto windows environment variables and add an ENV variable
+MAVEN_HOME=c:\apache-maven-3.8.6
+append the above MAVEN_HOME to the PATH variable
+PATH=%MAVEN_HOME%\bin 
+
+5. test your installation by running the below command on windows command-prompt
+mvn --version
+
+Ubuntu Linux operating system:
+1. install jdk11
+2. install maven
+
+sudo apt update -y
+sudo apt install -y openjdk-11-jdk
+sudo apt install -y maven
+------------------------------------------------------------------------------------------------------------------------
+How to build an project using maven?
+1. create an java project based on maven standardized directory structure as described below
+
+projectname (root project directory)
+|-src
+  |-main  (production)
+		|-java (java sourcecode)
+		|-resources (non-java sourcecode)
+	|-test  (unittesting)
+		|-java (java sourcecode)
+		|-resources (non-java source code)
+
+	
+There are 2 source directories are there in maven project why?
+1. #main 
+2. #test
+In our project we write code and write unittest code for testing the actual code of the project. now to let the maven differentiate between the sourcecode and unitest code of our project, it has provided 2 different source directories so that maven can identify and package only the source code of the project when asked
+	
+and maven can even execute the unittest code automatically while packaging the project
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

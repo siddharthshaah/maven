@@ -1,0 +1,200 @@
+archetypes
+archetypes are used for quickly creating an maven project. these are pre-built project templates created by the maven team and distributed to us through maven central repository.
+There are different archetypes for each type of project
+1. maven-archetype-quickstart
+2. maven-archetype-webapp
+3. maven-archetype-j2ee-simple
+4. maven-archetype-mojo
+5. maven-archetype-archetype
+
+How to create custom archetypes?
+There are 2 ways we can create our own custom archetypes
+1. using maven-archetype-archetype archetype to create the project from scratch
+2. create archetype from an existing project
+
+#2. create archetype from an existing project
+1. create an project using the maven archetype based on the type of the project
+2. add necessary dependencies, plugins and configuration/code which is common to all the projects of the technology/type you want to develop
+3. make sure the project can be build without any errors
+4. goto the root directory of the project and run the archetype plugin, create-from-project goal
+mvn archetype:create-from-project 
+5. it generates an archetype under /target/generated-sources/archetype	
+
+For eg.. we have created an project: teamtech-archetype-springcore
+teamtech-archetype-springcore
+|-src
+  |-main
+	  |-java
+			|-main
+				|-App.java
+		|-resources
+			|-application-context.xml
+	|-test
+		|-java			
+		|-resources			
+|-pom.xml
+  |-spring dependencies
+	|-plugins
+|-target
+	|-generated-sources
+		|-archetype
+			|-archetype-root (archetype)
+				|-pom.xml
+				|-src
+					|-main
+						|-java
+						|-resources
+							|-archetype-resources (project)
+								|-pom.xml
+								|-src
+									|-main
+										|-java
+											|-main
+												|-App.java
+										|-resources
+											|-application-context.xml
+						|-META-INF
+							|-maven
+								|-archetype-metadata.xml
+								
+								
+Now we can add any configurations further or resources for our project into archetype-resources directory and configure their information in archetype-metadata.xml
+
+|-archetype-root (archetype)
+				|-pom.xml
+				|-src
+					|-main
+						|-java
+						|-resources
+							|-archetype-resources (project)
+								|-pom.xml
+								|-src
+									|-main
+										|-java
+											|-main
+												|-App.java
+										|-resources
+											|-application-context.xml
+						|-META-INF
+							|-maven
+								|-archetype-metadata.xml
+mvn clean install
+------------------------------------------------------------------------------------------------------------------------
+Plugins
+
+Plugins are the basic building blocks of the maven build process. A maven build comprises of multiple build steps/activities to be performed in building an project. An build activity or step is represented by an maven plugin
+
+Plugin can be treated as component and it contains multiple goals, each goal performs an activity or an action as part of the build process.
+	
+archetype is a plugin it has multiple goals
+|-generate
+|-create-from-project
+
+install is a plugin, and it has a goal called "install" to install a local artifact into the maven repository
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								
+								
+								
+								
+								
+								
+								
+								
+											
+											
+										
+								
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

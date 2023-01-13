@@ -1,0 +1,176 @@
+Transitive dependencies
+When we add a dependency into the project, it may intern dependent on other dependencies these are called transistive dependencies. So we can classify the dependencies of our project as 2 types
+1. direct dependencies = dependencies we declared directly in the pom.xml required for our project
+2. transitive dependencies = dependencies intern requires others and can be at any level nesting 
+
+For a project to work we need all of these dependencies to be available to work and more over identifying the transitive dependencies with compatible versions between them is extremly difficult. Most of the time the developer during the stage of development spends huge amount of time in compiling the dependencies and the transitive dependencies along with their version compatiblities in a trail/error mechansim to setup the application
+
+Maven has provided an solution to overcome the above problem using Transtitive dependency management
+In our project we only declare direct dependencies, we dont need to identify or declare transitive dependencies in our project. Maven automatically takes care of identifying the transitive dependencies for the direct dependencies we declared including their transitive dependencies upto the extent of any level recursively and make them available for the project to work.
+	
+How to find what dependencies are included in our project?
+maven has provided a plugin 
+mvn dependency:tree 
+------------------------------------------------------------------------------------------------------------------------
+Through transitive dependency management, we might land into conflicting dependency resolution where 2 dependencies might have declared same transitive dependency of 2 different versions, in such case maven uses dependency mediation technic to resolve the transitive dependency
+
+Dependency Mediation Technic
+When maven lands into conflicting dependencies through transitive dependency management process it uses mediation technic
+There are rules of resolving them
+1. always pick the transitive dependency closed to the top of the tree
+2. if in case 2 conflicting transitive dependencies are at the same level, then picks the left most of the tree
+
+------------------------------------------------------------------------------------------------------------------------
+Dependency Scope
+during compilation of the project
+mysql-connector-java:8.12 = should be packaged and including while execution (jdbc implementation jar) (include: runtime)
+	Statement
+	PreparedStatement
+	Connection
+	ResultSet
+	
+	
+servlet-api.jar = at runtime we dont need to ship, because containers already have them (include during compilation)
+jsp-api.jar
+
+junit.jar = only during the compilation and execution of testcase code
+
+Not all the dependencies are required to be available during all the stages of the project like compiling, packaging or testing. Few dependencies has to be included 
+1. only during compilation
+2. few should shipped while packaging
+3. others has to used during unittest case executions
+
+we can classify the usage of these dependencies and can instruct the maven to use accordingly through dependency scope
+There 6 scopes of dependencies are there
+1. compile
+2. provided
+3. runtime
+4. test
+5. system
+6. import
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
